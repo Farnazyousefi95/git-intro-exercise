@@ -63,7 +63,6 @@
 # files that were 'given to' this script. The variable "$@" will be very useful
 # for this. Let's take a look at what it gives us:
 
-echo "$@"
 
 # How are you going to work with each file path?
 # HINT: for loop (remember "for do done"?)
@@ -93,4 +92,23 @@ echo "$@"
 # Good luck!
 #
 # ADD YOUR CODE BELOW:
+
+#!/bin/sh
+
+total=0
+
+for filepath in "$@"
+do
+  # count sequences (number of header lines starting with '>')
+  n=$(grep -c "^>" "$filepath")
+
+  # print count + filename only (not full path)
+  echo "$n $(basename "$filepath")"
+
+  # add to total
+  total=$((total + n))
+done
+
+# print total on final line
+echo "$total"
 
